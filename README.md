@@ -1,1 +1,8 @@
 # nodejs
+
+
+Ferramentas 
+
+nvm
+nodemon 
+
