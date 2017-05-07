@@ -9,6 +9,8 @@ nodemon
 
 Ecmascript
 
-Array = https://repl.it/Hktj/0
+Array - forEach -  https://repl.it/Hktj/0
 
+
+Array - map -  https://repl.it/Hkvy/0
 
