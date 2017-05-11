@@ -7,10 +7,18 @@ html(lang='en')
     title= title
     link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/justified-nav.css')
+    link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+      
     //if lt IE 9
       script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
       script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
   body
-    block content
+    .container
+      .masthead        
+        h3.text-muted Project name
+        include partials/menu        
+      block content        
+      include partials/footer    
     script(src='js/jquery.min.js')
     script(src='js/bootstrap.min.js')
