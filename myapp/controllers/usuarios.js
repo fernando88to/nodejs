@@ -6,7 +6,8 @@ module.exports = function(app) {
             //faz uma consulta na base de dados
             Usuario.find(function (err, dados) {
                 if(err){
-                    //
+                    req.flash("erro","Erro ao buscar usuários"+ err);
+                    res.redirect("/usuarios");
                 }else{
                     res.render('usuarios/index',{lista:dados});
                 }

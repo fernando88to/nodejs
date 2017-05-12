@@ -6,6 +6,10 @@ block content
     a(href="/usuarios/create", class="btn btn-success") Cadastrar
     br
     br
+    p= messages
+    if messages && messages.erro
+      div(class="alert alert-danger")
+        p= messages.erro
     if lista.length > 0
       table(class="table table-striped")
         thread
