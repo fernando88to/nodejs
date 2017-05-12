@@ -27,7 +27,8 @@ var session = require('express-session')
 var load  = require('express-load')
 
 var app = express();
-load("controllers").then("models").then("routes").into(app);
+//load("controllers").then("models").then("routes").into(app);
+load('models').then('controllers').then('routes').into(app);
 
 
 

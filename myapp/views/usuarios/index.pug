@@ -1,0 +1,26 @@
+extends ../layout
+
+block content  
+  .jumbotron
+    h1 Usuários
+    a(href="/usuarios/create", class="btn btn-success") Cadastrar
+    br
+    br
+    if lista.length > 0
+      table(class="table table-striped")
+        thread
+          tr
+            th ID:
+            th Nome:
+            th Email:
+            th Data:
+            th Ações:
+        tbody
+          each valor in lista
+            tr
+              td #{valor._id}
+              td #{valor.nome}
+              td #{valor.email}
+              td #{valor.data_cad}
+    else
+      p Nenhum registro encontrado!
