@@ -23,14 +23,11 @@ mongoose.connect('mongodb://localhost/acadtec', function (err) {
 //var index = require('./routes/index');
 //var users = require('./routes/users');
 
-var session = require('express-session')
+var session = require('express-session');
 
-var load  = require('express-load')
+var load  = require('express-load');
 
 var app = express();
-//load("controllers").then("models").then("routes").into(app);
-load('models').then('controllers').then('routes').into(app);
-
 
 
 //sessão
@@ -42,6 +39,13 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+
+app.use(flash());
+//load("controllers").then("models").then("routes").into(app);
+load('models').then('controllers').then('routes').into(app);
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -55,7 +59,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(flash());
+
 
 //app.use('/', index);
 //app.use('/users', users);

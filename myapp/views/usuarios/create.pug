@@ -1,10 +1,16 @@
 extends ../layout
 
-block content  
+block content
   .jumbotron
     h1 Criar Usuário
     hr
     br
+    if messages && messages.erro
+          div(class="alert alert-danger")
+            p= messages.erro
+    if messages && messages.info
+          div(class="alert alert-success")
+            p= messages.info
     form(method="POST", action="/usuarios/create", role="form")
       div(class="form-group")
         label Nome
@@ -13,10 +19,12 @@ block content
         label E-mail
         input(type="email", class="form-control", name="email", placeholder="Email")
       div(class="form-group")
+        label Site
+        input(type="text", class="form-control", name="site", placeholder="Site", value="http://")
+      div(class="form-group")
         label Senha
-        input(type="password", class="form-control", name="password", placeholder="Senha")                  
+        input(type="password", class="form-control", name="password", placeholder="Senha")
       div(class="form-group")
         label Confirmar Senha
         input(type="password", class="form-control", name="password_confirmar", placeholder="Confirmar Senha")
       button(type="submit", class="btn btn-success") Salvar
-                  
