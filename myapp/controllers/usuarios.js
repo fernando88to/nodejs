@@ -21,19 +21,23 @@ module.exports = function(app) {
           },
           post:function (req, res) {
             var model = new Usuario();
-            model.nome = "Fernando";
-            model.email = "fernando88to@gmail.com"//req.body.email;
-            model.site = "http://www.google.com.br"//req.body.site;
-            model.password = model.generateHash("123");
-            model.save(function (err) {
-                if(err){
-                    req.flash("erro","Erro ao cadastrar");
-                    res.render("usuarios/create",{user:req.body});
-                }else{
-                    req.flash("info", "Registro cadastrado com sucesso");
-                    res.redirect("/usuarios");
-                }
-            })
+            model.nome = req.body.nome;
+            model.email = req.body.email;
+            model.site = req.body.site;
+            model.password = model.generateHash(req.body.password);
+
+
+          model.save(function (err) {
+            if(err){
+                req.flash("erro","Erro ao cadastrar");
+                res.render("usuarios/create",{user:req.body});
+            }else{
+                req.flash("info", "Registro cadastrado com sucesso");
+                res.redirect("/usuarios");
+            }
+            });
+
+
 
           }
 

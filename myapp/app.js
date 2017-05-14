@@ -41,10 +41,6 @@ app.use(session({
 }));
 
 app.use(flash());
-//load("controllers").then("models").then("routes").into(app);
-load('models').then('controllers').then('routes').into(app);
-
-
 
 
 // view engine setup
@@ -58,6 +54,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+//load("controllers").then("models").then("routes").into(app);
+load('models').then('controllers').then('routes').into(app);
+
+
+
+
 
 
 
