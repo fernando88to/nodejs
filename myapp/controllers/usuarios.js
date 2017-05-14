@@ -1,3 +1,8 @@
+var moment = require("moment");
+
+
+
+
 module.exports = function(app) {
 
     var Usuario = app.models.usuarios;
@@ -5,14 +10,12 @@ module.exports = function(app) {
 
     var UsuarioController = {
           index : function (req, res) {
-              req.flash("info","sdfsdf");
-            //faz uma consulta na base de dados
             Usuario.find(function (err, dados) {
                 if(err){
                     req.flash("erro","Erro ao buscar usuários"+ err);
                     res.redirect("/usuarios");
                 }else{
-                    res.render('usuarios/index',{lista:dados});
+                    res.render('usuarios/index',{lista:dados, moment: moment});
                 }
             });
           },
