@@ -5,8 +5,7 @@ block content
     h1 Usuários
     a(href="/usuarios/create", class="btn btn-success") Cadastrar
     br
-    br
-    p= messages
+    br    
     if messages && messages.erro
       div(class="alert alert-danger")
         p= messages.erro
@@ -30,5 +29,12 @@ block content
               td #{valor.email}
               td #{moment(valor.data_cad).format("DD/MM/YYYY HH:mm:ss")}
               td
+                a(href=`/usuarios/show/${valor._id}`, class="btn btn-info")
+                  span(class="glyphicon glyphicon-search")
+                span &nbsp;
+                a(href=`/usuarios/edit${valor._id}`, class="btn btn-primary")
+                  span(class="glyphicon glyphicon-pencil")
+                  
+                
     else
       p Nenhum registro encontrado!

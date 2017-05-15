@@ -42,6 +42,16 @@ module.exports = function(app) {
 
 
 
+          },
+          show: function( req, res){
+            Usuario.findById(req.params.id, function (err, dados) {
+              if(err){
+                  req.flash("erro", "Erro ao visualizar o usuário", +err);
+                  res.redirect("/usuarios");
+              }else{
+                  res.render("usuarios/show", {dados:dados,moment:moment});
+              }
+            });
           }
 
 
