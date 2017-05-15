@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  .jumbotron
+    h1 #{dados.nome}
+    p
+      b Email: #{dados.email}
+    p
+      b Site: #{dados.site}
+    p
+      b Data do Cadastro: #{moment(dados.data_cad).format("DD/MM/YYYY HH:mm:ss")}
