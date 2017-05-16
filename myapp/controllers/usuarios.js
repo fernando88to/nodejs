@@ -1,4 +1,4 @@
-var moment = require("moment");
+
 
 
 
@@ -15,7 +15,7 @@ module.exports = function(app) {
                     req.flash("erro","Erro ao buscar usuários"+ err);
                     res.redirect("/usuarios");
                 }else{
-                    res.render('usuarios/index',{lista:dados, moment: moment});
+                    res.render('usuarios/index',{lista:dados});
                 }
             });
           },
@@ -49,10 +49,23 @@ module.exports = function(app) {
                   req.flash("erro", "Erro ao visualizar o usuário", +err);
                   res.redirect("/usuarios");
               }else{
-                  res.render("usuarios/show", {dados:dados,moment:moment});
+                  res.render("usuarios/show", {dados:dados});
               }
             });
-          }
+          },
+        delete: function (req, res) {
+              Usuario.remove({_id:req.params.id}, function (err) {
+                  if(err){
+                      req.flash("erro", "Erro remover o usuário", +err);
+                      res.redirect("/usuarios");
+                  }else{
+                      req.flash("info", "Registro excluido com sucesso");
+                      res.redirect("/usuarios");
+                  }
+
+              });
+
+        }
 
 
       }

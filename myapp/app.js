@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require("mongoose");
 var flash = require("express-flash");
+var moment = require("moment");
 
 
 
@@ -56,8 +57,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//ativa o help, dessa forma ele fica disponiveis em todas as respostas,
+//assim não precisa ficar passando no res.render()
+app.use(function(req, res, next){
+    res.locals.moment = moment;
+    next();
+});
 
-//load("controllers").then("models").then("routes").into(app);
+
 load('models').then('controllers').then('routes').into(app);
 
 

@@ -9,3 +9,18 @@ block content
       b Site: #{dados.site}
     p
       b Data do Cadastro: #{moment(dados.data_cad).format("DD/MM/YYYY HH:mm:ss")}
+    br
+    form(method="POST", action=`/usuarios/delete/${dados._id}`, role="form", id="excluir-form")
+      button(type="submit", class="btn btn-danger") Excluir
+    br
+    a(href="/usuarios") Voltar
+block scripts
+  script(type="text/javascript").
+    $(document).ready(function() {
+      $("#excluir-form").submit(function () {
+          var pergunta = confirm("Deseja realmente excluir ?");
+          if(!pergunta){
+              return false;
+          }
+      });
+    });
