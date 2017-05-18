@@ -65,6 +65,35 @@ module.exports = function(app) {
 
               });
 
+        },
+        edit : function(req, res){
+            Usuario.findById({_id:req.params.id}, function(err, data){
+                if(err){
+                    req.flash("erro", "Erro ao pesquisar o usuario", +err);
+                    res.redirect("/usuarios");
+                }else{
+                         res.render("usuarios/edit", {dados:data});
+                }
+
+            });
+
+        },
+        update : function(req, res){
+            Usuario.findById({_id:req.params.id}, function(err, data){
+                var model = data;
+                model.nome = req.body.nome;
+                model.site = req.body.site;
+                model.save(function(err){
+                    if(err){
+                         req.flash("erro", "Erro ao pesquisar o usuario", +err);
+                         res.render("/usuarios/edit/",{dados:model});
+                    }else{
+                        req.flash("info", "Registro atualizado com sucesso");
+                         res.redirect("/usuarios");
+                    }
+                });
+            });
+
         }
 
 
