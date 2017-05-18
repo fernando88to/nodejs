@@ -5,6 +5,7 @@
 
 module.exports = function(app) {
 
+    var validacao = require("../validacoes/usuarios");
     var Usuario = app.models.usuarios;
 
 
@@ -20,25 +21,30 @@ module.exports = function(app) {
             });
           },
           create : function (req, res) {
-            res.render("usuarios/create");
+            res.render("usuarios/create", {user:new Usuario()});
           },
           post:function (req, res) {
-            var model = new Usuario();
-            model.nome = req.body.nome;
-            model.email = req.body.email;
-            model.site = req.body.site;
-            model.password = model.generateHash(req.body.password);
+              if(validacao(req, res)){
+                  var model = new Usuario();
+                  model.nome = req.body.nome;
+                  model.email = req.body.email;
+                  model.site = req.body.site;
+                  model.password = model.generateHash(req.body.password);
 
 
-          model.save(function (err) {
-            if(err){
-                req.flash("erro","Erro ao cadastrar");
-                res.render("usuarios/create",{user:req.body});
-            }else{
-                req.flash("info", "Registro cadastrado com sucesso");
-                res.redirect("/usuarios");
-            }
-            });
+                  model.save(function (err) {
+                      if(err){
+                          req.flash("erro","Erro ao cadastrar");
+                          res.render("usuarios/create",{user:req.body});
+                      }else{
+                          req.flash("info", "Registro cadastrado com sucesso");
+                          res.redirect("/usuarios");
+                      }
+                  });
+              }else{
+                  res.render("usuarios/create",{user:req.body});
+              }
+
 
 
 

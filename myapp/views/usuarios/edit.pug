@@ -6,17 +6,18 @@ block content
     br
     if messages && messages.erro
           div(class="alert alert-danger")
-            p= messages.erro
+            each msg in messages.erro
+                p= msg
     if messages && messages.info
           div(class="alert alert-success")
             p= messages.info
     form(method="POST", action=`/usuarios/edit/${dados._id}`, role="form")
       div(class="form-group")
         label Nome
-        input(type="text", class="form-control", name="nome", placeholder="Nome", autofocus, value=`${dados.nome}`)
+        input(type="text", class="form-control", name="nome", placeholder="Nome", autofocus, value=`${dados.nome}`, required)
       div(class="form-group")
         label E-mail
-        input(type="email", class="form-control", name="email", placeholder="Email", value=`${dados.email}` disabled)
+        input(type="email", class="form-control", name="email", placeholder="Email", value=`${dados.email}`, disabled, required= )
       div(class="form-group")
         label Site
         input(type="text", class="form-control", name="site", placeholder="Site", value=`${dados.site}`)      

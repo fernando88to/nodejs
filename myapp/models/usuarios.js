@@ -5,8 +5,8 @@ module.exports = function(){
 
     var usuarioSchema = mongoose.Schema({
         nome     : {type: String, trim: true},
-        email    : {type: String},
-        blog     : {type: String},
+        email    : {type: String, unique:true, index:true},
+        blog     : {type: String, trim:true},
         password : {type: String},
         data_cad : {type: Date, default: Date.now}
     });
