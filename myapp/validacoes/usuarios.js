@@ -9,7 +9,11 @@ module.exports = function(req, res){
        req.assert("password", "Sua senha deve conter 6 ou 10 caracteres").len(6,10);
 
    }
-   req.assert("site", "Site não é uma url válida").isURL();
+   if(req.body.site){
+       req.assert("site", "Site não é uma url válida").isURL();
+   }
+
+
 
    var validateErros = req.validationErrors() || [] ;
 
