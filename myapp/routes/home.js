@@ -1,13 +1,21 @@
-module.exports = function(app){
-  var home = app.controllers.home;
+var mongoose = require('mongoose');
+var bcrypt   = require('bcrypt-nodejs');
 
-  app.route("/").get(home.login).post(home.autenticacao);
+module.exports = function(){
+
+    var contatoSchema= mongoose.Schema({
+
+        tipo:{type:String, required:true, trim:true},
+        telefone:{type:String, required:true, trim:true}
+    });
 
 
-    app.route("/home").get(home.index);
+    var amigosSchema = mongoose.Schema({
+        nome     : {type: String, trim: true, required:true, unique:true},
+        email    : {type: String, unique:true, index:true, trim:true},
+        data_cad : {type: Date, default: Date.now},
+        contato : [contatoSchema]
+    });
 
-    app.route("/logout").get(home.logout);
-
-
-
+    return mongoose.model('Amigos',amigosSchema);
 }
